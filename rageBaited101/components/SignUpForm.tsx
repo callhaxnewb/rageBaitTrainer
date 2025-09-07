@@ -6,7 +6,7 @@ type SignUpFormProps = {
   onSignUp: () => void;
   onSwitchToLogin: () => void;
 };
-
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 export default function SignUpForm({ onSignUp, onSwitchToLogin }: SignUpFormProps) {
   const { setName, setCollege, setState } = useUser();
   const [nameInput, setNameInput] = useState('');
@@ -30,7 +30,7 @@ export default function SignUpForm({ onSignUp, onSwitchToLogin }: SignUpFormProp
         state: stateInput,
       };
 
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`,  {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newUser),
